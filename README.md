@@ -16,15 +16,19 @@ This project demonstrates a simple 2-container Docker setup:
 project/
 │
 ├── ui/
-│   ├── app.py
-│   ├── requirements.txt
-│   └── Dockerfile
+│   ├── app.py                 # Flask application
+│   ├── requirements.txt       # Python dependencies
+│   ├── Dockerfile             # Dockerfile for UI container
+│   ├── templates/
+│   │   └── index.html         # HTML page for the browser UI
+│   └── static/
+│       └── styles.css         # CSS styling for the UI
 │
 ├── db/
-│   └── Dockerfile
+│   └── Dockerfile             # Minimal Alpine container for database volume
 │
-├── docker-compose.yml
-└── README.md
+└── docker-compose.yml         # Docker Compose configuration
+
 ```
 
 ---
@@ -81,7 +85,38 @@ This architecture keeps the DB separate and easily replaceable.
 
 ---
 
-## How to Run the Project
+## How to Run the Project From the browser:
+
+### 1. Clone the project
+```bash
+git clone <your-repository-url>
+cd project
+```
+
+### 2. Build and run with Docker Compose
+```bash
+docker compose up --build
+```
+
+You will see:
+
+- `db_service` → starts and waits  
+- `ui_service` → starts Flask on port **5000**
+
+### 3. Open the browser and run:
+
+``` bash
+http://localhost:5000
+```
+#### In the UI itself:
+- Enter a value in the input field and press "Add" button or press the Enter key.
+- Values are displayed in a table below.
+- The table automatically refreshes every 2 seconds to show all stored values.
+
+---
+
+
+## How to Run the Project from the CLI:
 
 ### 1. Clone the project
 ```bash
@@ -101,7 +136,7 @@ You will see:
 
 ---
 
-## Test the API
+### 3. Test the API
 
 ### Add a value:
 ```bash
